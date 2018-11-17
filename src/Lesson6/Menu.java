@@ -24,7 +24,7 @@ public class Menu {
             unsNumb = sc.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("---Wrong input!---");
-            unsNumb = 1;
+            unsNumb = 7;
         }
         sc.nextLine();
         System.out.println("<===================>");
@@ -108,17 +108,18 @@ public class Menu {
                         "Put name/surname to add Cont.> "
         );
         name = sc.nextLine();
-        System.out.print("Put type of number> ");
-        type = sc.nextLine();
-        System.out.print("Put number> ");
-        number = sc.nextInt();
-        sc.nextLine();
+
         for (Map.Entry<Users, HashSet<Contact>> usersHashSetEntry : userMap.entrySet()) {
             if (usersHashSetEntry.getKey().getName().equals(name) || usersHashSetEntry.getKey().getSurname().equals(name)) {
+                System.out.print("Put type of number> ");
+                type = sc.nextLine();
+                System.out.print("Put number> ");
+                number = sc.nextInt();
+                sc.nextLine();
                 usersHashSetEntry.getValue().add(new Contact(type, number));
+                System.out.println("---Add complete!---");
             }
         }
-        System.out.println("---Add complete!---");
         return userMap;
     }
 
@@ -128,7 +129,8 @@ public class Menu {
         String newType;
         int newNumber;
         Set<Map.Entry<Users, HashSet<Contact>>> entries = userMap.entrySet();
-        //Iterator<Map.Entry<Users, HashSet<Contact>>> iterator4 = entries.iterator();
+        //Iterator<Map.Entry<Users, HashSet<Contact>>> iteratorUs = entries.iterator();
+        //Iterator<Map.Entry<Users, HashSet<Contact>>> iteratorCon = entries.iterator();
         Scanner sc = new Scanner(System.in);
 
         System.out.print(
@@ -139,24 +141,45 @@ public class Menu {
         name = sc.nextLine();
         System.out.print("Put old Type of number> ");
         oldType = sc.nextLine();
-        System.out.print("Put new Type of number> ");
-        newType = sc.nextLine();
-        System.out.print("Put new Number> ");
-        newNumber = sc.nextInt();
-        sc.nextLine();
 
-        for (Map.Entry<Users, HashSet<Contact>> usersHashSetEntr : userMap.entrySet()) {
-            if (usersHashSetEntr.getKey().getName().equals(name) || usersHashSetEntr.getKey().getSurname().equals(name)) {
-                if (usersHashSetEntr.getValue().iterator().next().getType().equals(oldType)) {
-                    usersHashSetEntr.getValue().iterator().next().setType(newType);
-                    usersHashSetEntr.getValue().iterator().next().setNumber(newNumber);
+        for (Map.Entry<Users, HashSet<Contact>> hashSetEntry : userMap.entrySet()) {
+            if (hashSetEntry.getKey().getName().equals(name) || hashSetEntry.getKey().getSurname().equals(name)){
+                for (Map.Entry<Users, HashSet<Contact>> usersHashSetEntry : userMap.entrySet()) {
+                    if(usersHashSetEntry.getValue().iterator().next().getType().equals(oldType)){
+                        System.out.print("Put new Type of number> ");
+                        newType = sc.nextLine();
+                        System.out.print("Put new Number> ");
+                        newNumber = sc.nextInt();
+                        sc.nextLine();
+                        usersHashSetEntry.getValue().iterator().next().setType(newType);
+                        usersHashSetEntry.getValue().iterator().next().setNumber(newNumber);
+                        System.out.println("---Change complete!---");
+                    }
+                    else {
+                        System.out.println("---No that TypeContact!---");
+                    }
                 }
-            } else {
+            }else {
                 System.out.println("---No that User!---");
             }
         }
 
-        System.out.println("---Change complete!---");
+
+//        for (Map.Entry<Users, HashSet<Contact>> usersHashSetEntr : userMap.entrySet()) {
+//            if (usersHashSetEntr.getKey().getName().equals(name) || usersHashSetEntr.getKey().getSurname().equals(name)) {
+//                while (usersHashSetEntr.getValue().iterator().hasNext()) {
+//                    if (usersHashSetEntr.getValue().iterator().next().getType().equals(oldType)) {
+//                        usersHashSetEntr.getValue().iterator().next().setType(newType);
+//                        usersHashSetEntr.getValue().iterator().next().setNumber(newNumber);
+//                        System.out.println("---Change complete!---");
+//                    } else {
+//                        System.out.println("---No that TypeContact!---");
+//                    }
+//                }
+//            } else {
+//                System.out.println("---No that User!---");
+//            }
+//        }
         return userMap;
     }
 

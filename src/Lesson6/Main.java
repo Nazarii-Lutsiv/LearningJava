@@ -13,6 +13,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Menu menu = new Menu();
 
+        map.put(new Users("Bob", "Bon"), new HashSet<>());
+        map.put(new Users("Ron", "Rob"), new HashSet<>());
+
         while (!isEnd) {
             boolean moreAction = true;
             numbMenu = menu.showMainMenu();
@@ -46,6 +49,9 @@ public class Main {
                 case 6:
                     menu.showAllTelBook(map);
                     break;
+                case 7:
+                    //Kostil for Exeption(wrong input)
+                    break;
                 case 0:
                     isEnd = true;
                     System.out.println("<-----Good BYE!!!----->");
@@ -54,7 +60,6 @@ public class Main {
                     System.out.println("<Wrong input, please rapeat!>");
             }
         }
-
 //        map.put(new Users("Bo", "Bon"), new HashSet<>());
 //        map.put(new Users("Rob", "Ron"), new HashSet<>());
 //        map.put(new Users("Rab", "Ran"), new HashSet<>());
