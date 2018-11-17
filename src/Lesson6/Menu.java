@@ -144,21 +144,21 @@ public class Menu {
 
         for (Map.Entry<Users, HashSet<Contact>> hashSetEntry : userMap.entrySet()) {
             if (hashSetEntry.getKey().getName().equals(name) || hashSetEntry.getKey().getSurname().equals(name)){
-                for (Map.Entry<Users, HashSet<Contact>> usersHashSetEntry : userMap.entrySet()) {
-                    if(usersHashSetEntry.getValue().iterator().next().getType().equals(oldType)){
+                //while (hashSetEntry.getValue().iterator().hasNext()) {
+                    if(hashSetEntry.getValue().iterator().next().getType().equals(oldType)){
                         System.out.print("Put new Type of number> ");
                         newType = sc.nextLine();
                         System.out.print("Put new Number> ");
                         newNumber = sc.nextInt();
                         sc.nextLine();
-                        usersHashSetEntry.getValue().iterator().next().setType(newType);
-                        usersHashSetEntry.getValue().iterator().next().setNumber(newNumber);
+                        hashSetEntry.getValue().iterator().next().setType(newType);
+                        hashSetEntry.getValue().iterator().next().setNumber(newNumber);
                         System.out.println("---Change complete!---");
                     }
                     else {
                         System.out.println("---No that TypeContact!---");
                     }
-                }
+               // }
             }else {
                 System.out.println("---No that User!---");
             }
